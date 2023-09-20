@@ -9,29 +9,32 @@
 <h1>My Super Fancy Spa</h1>
 <div id = "clientProfile">
     <h2>My Profile</h2>
-    <p th:text="${name}"></p>
-    <p th:text="${skintype}"></p>
-    <p th:text="${manipedi}"></p>
+    <p th:text="${name}">test name</p>
+    <p th:text="${skintype}">test skintype</p>
+    <p th:text="${manipedi}">test manipedi</p>
 </div>
 <div id = "servicesMenu">
-    <h2>Facial treatments</h2>
-    <th:block>
-        <table th:each="item : ${appropriateFacials}" th:text="${item}"></table>
-    </th:block>
+    <h2>Menu of Available Services</h2>
+    <h3>Facial Treatments</h3>
+    <p>The facial treatments below are recommended<br>by our estheticians for your given skin type.</p>
+    <table>
+        <th:block th:each = "skinCare: ${appropriateFacials}">
+            <tr>
+                <td th:text="${skinCare}">test</td>
+            </tr>
+        </th:block>
 
-    <div th:if ="${manipedi == 'manicure'}">
-        <h3>Manicure</h3>
-        <p th:replace ="fragments :: manicureDescription"></p>
+    </table>
+    <div th:if="'manicure' == ${manipedi}">
+        <h2 th:text="Manicure"></h2>
+        <h3 th:replace="fragments :: manicureDescription">Manicure</h3>
     </div>
-    <div th:if = "${manipedi == 'pedicure'}">
-        <h3>Pedicure</h3>
-        <p th:replace ="fragments :: pedicureDescription"></p>
+    <div th:if="'pedicure' == ${manipedi}">
+        <h2 th:text="Pedicure"></h2>
+        <h3 th:replace="fragments :: pedicureDescription">Pedicure</h3>
     </div>
-    <div th:if = "${manipedi == 'both'}">
-        <h3>Manicure & Pedicure</h3>
-        <p th:replace = "fragments :: manicureDescription"></p>
-        <p th:replace ="fragments :: pedicureDescription"></p>
-    </div>
+
+
 </div>
 </body>
 </html>
